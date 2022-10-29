@@ -10,7 +10,7 @@ async function getNeko(){
     const data = await response.json();
     const neko = data.url;
     document.querySelector("#neko").src = neko;
-    document.querySelector("#download").href = `${baseUrl}/download?file=${replaceSlashes(encodeURI((neko)))}`;
+    document.querySelector("#download").href = `${baseUrl}/api/v1/download?file=${replaceSlashes(encodeURI((neko)))}`;
 }
 
 getNeko();

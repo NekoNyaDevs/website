@@ -10,7 +10,7 @@ async function getKitsune(){
     const data = await response.json();
     const kitsune = data.url;
     document.querySelector("#kitsune").src = kitsune;
-    document.querySelector("#download").href = `${baseUrl}/download?file=${replaceSlashes(encodeURI((kitsune)))}`;
+    document.querySelector("#download").href = `${baseUrl}/api/v1/download?file=${replaceSlashes(encodeURI((kitsune)))}`;
 }
 
 getKitsune();

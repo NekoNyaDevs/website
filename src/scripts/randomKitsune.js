@@ -1,4 +1,4 @@
-const baseUrl = 'http://localhost:8080';
+const baseUrl = 'https://nekonya.classy.works';
 const apiURL = `${baseUrl}/api/v1/random/kitsune`;
 
 function replaceSlashes(string) {

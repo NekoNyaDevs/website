@@ -22,8 +22,6 @@ app.use(require('./handlers/logging.js')(logger));
 app.use('/static', express.static(__dirname + "/src"));
 app.use('/scripts', express.static(__dirname + '/src/scripts'));
 
-const blobs = new Blobs(process.env.ACCOUNT, process.env.KEY);
-const cdnUrl = process.env.CDNURL;
 
 const isValidMethod = (method) => {
     return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(method.toUpperCase());
@@ -60,6 +58,5 @@ main().catch(err => {
 });
 
 module.exports = {
-    app,
-    blobs
+    app
 };

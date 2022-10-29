@@ -2,8 +2,9 @@ const express = require('express');
 const api = express.Router();
 const azure = require('@azure/storage-blob');
 const request = require("superagent");
-const blobs = require('../index.js').blobs;
+const Blobs = require('../structures/blobs');
 
+const blobs = new Blobs(process.env.CDNACCOUNT, process.env.KEY);
 
 api.use(async (req, res, next) => {
     next();

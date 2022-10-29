@@ -6,6 +6,8 @@ const sl = require('@classycrafter/super-logger');
 const fs = require("fs");
 require('dotenv').config();
 
+if(!fs.existsSync('./logs')) fs.mkdirSync('./logs');
+
 const logger = new sl.Logger({
     name: 'NekoNya',
     timezone: 'Europe/Paris',

@@ -1,0 +1,34 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.9.1/font/bootstrap-icons.css");
+
+#particles-js {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -1;
+}
+
+$primary: #00bcd4;
+$secondary: #adadad;
+$danger: #f44336;
+$warning: #ff9800;
+$success: #4caf50;
+$info: #2196f3;
+$light: #fafafa;
+$dark: #212121;
+
+$themes-color: (
+  "primary": $primary,
+  "secondary": $secondary,
+  "danger": $danger,
+  "warning": $warning,
+  "success": $success,
+  "info": $info,
+  "light": $light,
+  "dark": $dark
+);
+
+.header-icon {
+  font-size: 100px;
+}
+
+@import "../../node_modules/bootstrap/scss/bootstrap";

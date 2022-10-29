@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <%- include('../parts/headers.ejs') %>
+    <title>NekoNya, website for nekos</title>
+</head>
+<body style="background-color: #bbbbbb;" class="d-flex flex-column min-vh-100">
+    <!--Cool navbar?-->
+    <nav class="navbar navbar-expand-lg bg-light" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+          <a class="navbar-brand" href="#">NekoNya</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="#">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#about">About</a>
+              </li>
+              <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                  Others
+                </a>      
+                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <li><a class="dropdown-item" href="/random">Random Neko</a></li>
+                  <li><a class="dropdown-item" href="/randomkitsune">Random Kitsune</a></li>
+                  <li><a class="dropdown-item" href="/api/v1/">API</a></li>
+                  <li><a class="dropdown-item disabled" href="#">NSFW (Only available from API!)</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item" target="_blank" href="/discord">Post images</a></li>
+                  <li><a class="dropdown-item" target="_blank" href="/contact">Contact Us</a></li>
+                  <li><hr class="dropdown-divider"></li>
+                  <li><a class="dropdown-item disabled" href="#">More Soon...</a></li>
+                </ul>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    <!--What's the website about?-->
+    <div id="particles-js"></div>
+    <div class="container" >
+        <div class="row">
+            <div class="col">
+                <h1 class="text-center">Welcome to NekoNya!</h1>
+            </div>
+        </div>
+        <div class="row" id="about">
+            <div class="col-md-12">
+                <h2>About</h2>
+                <p>Made by TheDogHusky aka ClassyCrafter, NekoNya is a website for nekos, kitsunes, and other anime things. We have a random image picker, and an API for developers to use. We also have a discord server for you to post images and chat with other people. We hope you enjoy your stay!</p>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row row-cols-1 row-cols-md-3 g-4">
+            <div class="col py-5">
+                <div class="card h-100 text-center opacity-75">
+                    <i class="bi bi-file-earmark-code-fill header-icon"></i>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Free to use, maybe</h5>
+                        <p class="card-text">We can't really tell if our images are free to use, we just got 'em downloading from some databases, without filtering. But let's say it is, right?</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/random" class="btn btn-primary opacity-100">Try out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col py-5">
+                <div class="card h-100 text-center opacity-75">
+                    <i class="bi bi-braces-asterisk header-icon"></i>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">Fast</h5>
+                        <p class="card-text">The website is made on ExpressJS, and constantly optimized, to bring you the fastest API and deliver you some images fast.</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/random" class="btn btn-primary opacity-100">Try out</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col py-5">
+                <div class="card h-100 text-center opacity-75">
+                    <i class="bi bi-lightning-charge-fill header-icon"></i>
+                    <div class="card-body text-center">
+                        <h5 class="card-title">API</h5>
+                        <p class="card-text">This website also has an API for developers to use, you can use the API to get random images.</p>
+                    </div>
+                    <div class="card-footer text-center">
+                        <a href="/api/v1/endpoints" class="btn btn-primary opacity-100">Look at the endpoints</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--How does it work?-->
+    <div class="container" id="howto">
+        <div class="row">
+            <div class="col-md-12">
+                <h2>How it works</h2>
+                <p>This website will generate a random neko image, or kitsune image (or a lot more) when you reload the type's page and the button.</p>
+            </div>
+            <a class="btn btn-primary" href="/random">Get in da nekos!</a>
+        </div>
+    </div>
+    <footer class="text-center text-lg-start bg-light text-muted mt-auto">
+        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
+    © 2021-2022 Copyright:
+    <a class="text-reset fw-bold" href="https://worldwild.studio">WorldWild Studios</a>
+  </div>
+    </footer>
+    <script src="/scripts/particles.js"></script>
+</body>
+</html>

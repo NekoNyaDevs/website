@@ -45,9 +45,9 @@ const main = async () => {
         }
     }
 
+    app.use('/api', require('./routers/api'));
     app.use(require('./handlers/404handler.js')(logger));
     app.use(require('./handlers/errorhandler.js')(logger));
-    app.use('/api', require('./routers/api'));
 
     app.listen(process.env.PORT, () => {
         logger.info(`Listening on port ${process.env.PORT}`, "Express");

@@ -21,7 +21,6 @@ app.set('views', __dirname + '/views');
 app.use(require('./handlers/logging.js')(logger));
 app.use('/static', express.static(__dirname + "/src"));
 app.use('/scripts', express.static(__dirname + '/src/scripts'));
-app.use('/api', require('./routers/api'));
 
 const blobs = new Blobs(process.env.ACCOUNT, process.env.KEY);
 const cdnUrl = process.env.CDNURL;
@@ -48,6 +47,7 @@ const main = async () => {
 
     app.use(require('./handlers/404handler.js')(logger));
     app.use(require('./handlers/errorhandler.js')(logger));
+    app.use('/api', require('./routers/api'));
 
     app.listen(process.env.PORT, () => {
         logger.info(`Listening on port ${process.env.PORT}`, "Express");

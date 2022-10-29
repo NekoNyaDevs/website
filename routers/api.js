@@ -5,6 +5,13 @@ const request = require("superagent");
 const blobs = require('../index.js').blobs;
 
 
+api.use(async (req, res, next) => {
+    next();
+});
+
+api.get('/', async (req, res) => {
+    res.redirect('/v1/');
+});
 
 api.get('/v1/', (req, res) => {
     res.status(200).json({ status: 200, code: 'OK', message: 'API Operationnal.', endpoints: '/api/v1/endpoints', latest: true })

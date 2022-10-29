@@ -9,6 +9,7 @@ NekoNya is an anime and neko themed utility website that contains a lot of featu
 - An API
 - A random neko image picker
 - A random anime image picker
+- - Hugs, pats, and more!
 - Some new features will come up soon!
 
 ## 📝・How to use the API?

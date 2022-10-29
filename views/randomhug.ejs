@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <%- include('../parts/headers.ejs') %>
+    <title>Random Hug</title>
+</head>
+<body style="background-color: #bbbbbb;">
+<div class="container align-items-center justify-content-center">
+    <div class="row">
+        <div class="col-12">
+            <h1 class="text-center">Random Hug</h1>
+            <button id="new" class="btn btn-primary">
+                <span id="text">New hug pls</span>
+            </button>
+            <a id="download" href="" target="_blank" class="btn btn-primary">Download this one!</a>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-12">
+            <img class="img-fluid" id="hug" alt="Hug" style="margin-top: 20px;" src="">
+        </div>
+    </div>
+</div>
+<script src="/scripts/randomHug.js"></script>
+</body>
+</html>

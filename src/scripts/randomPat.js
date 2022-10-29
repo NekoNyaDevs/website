@@ -5,7 +5,7 @@ function replaceSlashes(string) {
     return string.replace(/\//g, '%2F');
 }
 
-async function getKitsune(){
+async function getPat(){
     const response = await fetch(apiURL);
     const data = await response.json();
     const pat = data.url;

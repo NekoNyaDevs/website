@@ -56,7 +56,7 @@ let btnNew = document.querySelector('#new');
 btnNew.addEventListener('click', async () => {
     changeClassState('disabled', btnNew, true);
     changeLoadingState(btnNew, true);
-    await getKitsune().catch(err => {});
+    await getKiss().catch(err => {});
     changeClassState('disabled', btnNew, false);
     changeLoadingState(btnNew, false);
 });

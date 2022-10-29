@@ -27,7 +27,9 @@ import fetch from 'node-fetch';
     console.log(url);
 })()
 ```
-> Note: An official NPM package is in development to make the requests easier.
+If you prefer to use one of our wrappers:
+- [JavaScript/TypeScript](https://www.npmjs.com/package/nekonya.js)
+- Java - Still in development!
 
 ## 📜・License
 

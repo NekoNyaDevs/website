@@ -1,10 +1,9 @@
 const express = require("express");
 const app = express();
-const azure = require("@azure/storage-blob");
-const Blobs = require("./structures/blobs");
 const sl = require('@classycrafter/super-logger');
 const fs = require("fs");
 require('dotenv').config();
+const cors = require('cors');
 
 if(!fs.existsSync('./logs')) fs.mkdirSync('./logs');
 
@@ -13,11 +12,17 @@ const logger = new sl.Logger({
     timezone: 'Europe/Paris',
     tzformat: 24,
     writelogs: true,
-    dirpath: './logs'
+    dirpath: './logs',
+    colored: true,
+    enablecustom: false
 });
 
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
+app.set('host', process.env.HOST || 'localhost');
+app.use(cors());
+app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 app.use(require('./handlers/logging.js')(logger));
 app.use('/static', express.static(__dirname + "/src"));
 app.use('/scripts', express.static(__dirname + '/src/scripts'));
@@ -53,8 +58,7 @@ const main = async () => {
 };
 
 main().catch(err => {
-    logger.error(err.stack, "Express");
-    process.exit(1);
+    logger.fatal(err.stack, "Express");
 });
 
 module.exports = {

@@ -1,4 +1,4 @@
-const baseUrl = 'https://nekonya.classy.works';
+const baseUrl = window.location.origin;
 const apiURL = `${baseUrl}/api/v1/random/kiss`;
 
 function replaceSlashes(string) {
@@ -24,7 +24,6 @@ getKiss();
 function changeClassState(cssClass, element, state) {
     if(state === true && !element.classList.contains(cssClass)) return element.classList.add(cssClass);
     if(state === false && element.classList.contains(cssClass)) return element.classList.remove(cssClass);
-    return;
 }
 
 /**

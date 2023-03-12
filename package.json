@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
   },
   "keywords": [],
   "author": "",
@@ -12,9 +13,10 @@
   "dependencies": {
     "@azure/identity": "^2.0.5",
     "@azure/storage-blob": "^12.10.0",
-    "@classycrafter/super-logger": "^1.4.35",
+    "@classycrafter/super-logger": "^2.0.00",
     "bootstrap": "^5.2.0",
     "chalk": "^4.1.0",
+    "cors": "^2.8.5",
     "dotenv": "^16.0.1",
     "ejs": "^3.1.8",
     "express": "^4.18.1",

@@ -1,10 +1,7 @@
 const express = require('express');
 const api = express.Router();
-const azure = require('@azure/storage-blob');
 const request = require("superagent");
-const Blobs = require('../structures/blobs');
-
-const blobs = new Blobs(process.env.CDNACCOUNT, process.env.KEY);
+const fetch = require("node-fetch");
 
 api.use(async (req, res, next) => {
     next();
@@ -40,18 +37,20 @@ api.get('/v1/download', (req, res) => {
 
 /**
  *
- * @param {azure.ContainerClient} blobClient
  * @param {string} prefix
  * @returns {Promise<string>}
  */
-async function getRandomURL(blobClient, prefix) {
-    const blobs = blobClient.listBlobsByHierarchy("/", { prefix: prefix });
-    const arr = [];
-    for await (const blob of blobs) {
-        arr.push(blob);
-    }
+async function getRandomURL(prefix) {
+    const res = await fetch(`${process.env.STORAGEURL}/api/v1/list/${prefix}`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${process.env.STORAGETOKEN}`
+        }
+    }).then(res => res.json());
+    const arr = res.data.files;
     if(arr.length <= 0) return null;
-    return `${process.env.CDNURL}/${blobClient.containerName}/${arr[Math.floor(Math.random() * arr.length)]?.name}`;
+    return `${process.env.STORAGEURL}/images/${prefix}/${arr[Math.floor(Math.random() * arr.length)]}`;
 }
 
 api.get('/v1/random/:type', async (req, res) => {
@@ -59,32 +58,28 @@ api.get('/v1/random/:type', async (req, res) => {
     //return res.status(503).json({ message: 'Service Temporary Unavailable - Maintenance occurring on API.' })
     switch(type) {
         case 'neko':
-            const nekourl = await getRandomURL(blobs.getContainerClient('nekos'), 'normal/');
+            const nekourl = await getRandomURL('nekos');
             res.status(200).json({ url: nekourl ? nekourl : 'No Neko :/' });
             break;
         case 'kitsune':
-            const kitsuneurl = await getRandomURL(blobs.getContainerClient('kitsunes'), 'normal/');
+            const kitsuneurl = await getRandomURL('kitsunes');
             res.status(200).json({ url: kitsuneurl ? kitsuneurl : 'No Kitsune :/' });
             break;
         case 'lewd':
-            const lewdurl = await getRandomURL(blobs.getContainerClient('nekos'), 'lewd/');
+            const lewdurl = await getRandomURL('lewds');
             res.status(200).json({ url: lewdurl ? lewdurl : 'No Lewd Neko :/' });
             break;
         case 'hug':
-            const hugurl = await getRandomURL(blobs.getContainerClient('hugs'), '');
+            const hugurl = await getRandomURL('hugs');
             res.status(200).json({ url: hugurl ? hugurl : 'No Hug :/' });
             break;
         case 'kiss':
-            const kissurl = await getRandomURL(blobs.getContainerClient('kisses'), '');
+            const kissurl = await getRandomURL('kisses');
             res.status(200).json({ url: kissurl ? kissurl : 'No Kiss :/' });
             break;
         case 'pat':
-            const paturl = await getRandomURL(blobs.getContainerClient('pats'), '');
+            const paturl = await getRandomURL('pats');
             res.status(200).json({ url: paturl ? paturl : 'No Pat :/' });
-            break;
-        case 'pfp':
-            const pfpurl = await getRandomURL(blobs.getContainerClient('nekos'), 'pfp/');
-            res.status(200).json({ url: pfpurl ? pfpurl : 'No PFP :/' });
             break;
         default:
             res.status(404).json({ message: 'Not Found' });

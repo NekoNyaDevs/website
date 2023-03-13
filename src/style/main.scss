@@ -7,11 +7,11 @@
   z-index: -1;
 }
 
-$primary: #00bcd4;
+$primary: #eb7763;
 $secondary: #adadad;
 $danger: #f44336;
 $warning: #ff9800;
-$success: #4caf50;
+$success: #7ed957;
 $info: #2196f3;
 $light: #fafafa;
 $dark: #212121;
@@ -29,6 +29,37 @@ $themes-color: (
 
 .header-icon {
   font-size: 100px;
+}
+
+@each $name, $color in $themes-color {
+  .btn-#{$name} {
+    background-color: $color !important;
+    border-color: $color !important;
+    border-width: 2px;
+    color: #fff;
+    transition: all 0.3s ease !important;
+    border-radius: 3px !important;
+    padding: 7px 20px !important;
+    font-size: 16px !important;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    &:hover {
+      background-color: darken($color, 10%) !important;
+      border-color: darken($color, 10%) !important;
+    }
+    &:focus, &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
+.card {
+    border: 0;
+    border-radius: 0.5rem;
+    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
+    transition: all 0.2s;
+    &:hover {
+        transform: translateY(-0.25rem);
+    }
 }
 
 @import "../../node_modules/bootstrap/scss/bootstrap";

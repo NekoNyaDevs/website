@@ -26,7 +26,7 @@ api.get('/v1/endpoints', (req, res) => {
 api.get('/v1/download', (req, res) => {
     const file = req.query.file;
     if(!file) return res.status(400).json({ message: 'Bad request.' });
-    if(!file.startsWith(process.env.CDNURL)) return res.status(400).json({ message: 'Bad request.' });
+    if(!file.startsWith(process.env.STORAGEURL)) return res.status(400).json({ message: 'Bad request.' });
     const filename = file.split('/').pop();
     res.set(
         'Content-Disposition',
@@ -48,6 +48,7 @@ async function getRandomURL(prefix) {
             'Authorization': `Bearer ${process.env.STORAGETOKEN}`
         }
     }).then(res => res.json());
+    console.log(res)
     const arr = res.data.files;
     if(arr.length <= 0) return null;
     return `${process.env.STORAGEURL}/images/${prefix}/${arr[Math.floor(Math.random() * arr.length)]}`;

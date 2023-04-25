@@ -5,62 +5,22 @@
     <title>NekoNya, website for nekos</title>
 </head>
 <body style="background-color: #bbbbbb;" class="d-flex flex-column min-vh-100">
-    <!--Cool navbar?-->
-    <nav class="navbar navbar-expand-lg bg-light" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-          <a class="navbar-brand" href="#">
-              <img src="/static/assets/logo_rounded.png" alt="Brand PNG" width="40" height="40">
-          </a>
-          <a class="navbar-brand" href="#">NekoNya</a>
-          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-          </button>
-          <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav ms-auto me-auto mb-2 mb-lg-0">
-              <li class="nav-item">
-                <a class="nav-link active" aria-current="page" href="#">Home</a>
-              </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#about">About</a>
-              </li>
-              <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                      Random Images
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                      <li><a class="dropdown-item" href="/random/neko">Random Neko</a></li>
-                      <li><a class="dropdown-item" href="/random/kitsune">Random Kitsune</a></li>
-                      <li><a class="dropdown-item" href="/random/hug">Random Hug</a></li>
-                      <li><a class="dropdown-item" href="/random/kiss">Random Kiss</a></li>
-                      <li><a class="dropdown-item" href="/random/pat">Random Pat</a></li>
-                  </ul>
-              </li>
-              <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                  Others
-                </a>      
-                <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <li><a class="dropdown-item" href="/api/v1/">API</a></li>
-                  <li><a class="dropdown-item disabled" href="#">NSFW (Only available from API!)</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item" target="_blank" href="/discord">Post images</a></li>
-                  <li><a class="dropdown-item" target="_blank" href="/contact">Contact Us</a></li>
-                    <li><a class="dropdown-item" target="_blank" href="https://docs.classy.works/nekonya-api-docs">API Docs</a></li>
-                    <li><a class="dropdown-item" target="_blank" href="https://github.com/NekoNyaDevs">Github</a></li>
-                  <li><hr class="dropdown-divider"></li>
-                  <li><a class="dropdown-item disabled" href="#">More Soon...</a></li>
-                </ul>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <!--What's the website about?-->
+    <%- include('../parts/nav.ejs') %>
     <div id="particles-js"></div>
     <div class="container" >
         <div class="row">
             <div class="col">
                 <h1 class="text-center">Welcome to NekoNya!</h1>
+            </div>
+        </div>
+        <div class="row center">
+            <div class="image-main-frame">
+                <img src="" alt="" id="neko" />
+            </div>
+            <div class="btn-group width-main" role="group">
+                <button role="button" class="btn btn-primary" id="new"><span id="text"><i class="bi bi-arrow-counterclockwise"></i> New one!</span></button>
+                <a role="button" class="btn btn-primary" href="/random/neko"><i class="bi bi-link-45deg"></i> Better experience in the random page!</a>
+                <a role="button" href="" class="btn btn-primary" id="download" target="_blank"><i class="bi bi-download"></i> Download image!</a>
             </div>
         </div>
         <div class="row" id="about">
@@ -123,12 +83,8 @@
             <a class="btn btn-primary" href="/random">Get in da nekos!</a>
         </div>
     </div>
-    <footer class="text-center text-lg-start bg-light text-muted mt-auto">
-        <div class="text-center p-4" style="background-color: rgba(0, 0, 0, 0.05);">
-    © 2021-2022 Copyright:
-    <a class="text-reset fw-bold" href="https://worldwild.studio">WorldWild Studios</a>
-  </div>
-    </footer>
+    <%- include('../parts/footer.ejs') %>
     <script src="/scripts/particles.js"></script>
+    <script src="/scripts/main.js"></script>
 </body>
 </html>

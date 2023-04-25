@@ -9,10 +9,14 @@
     <div class="row">
         <div class="col-12">
             <h1 class="text-center">Random <%= type %></h1>
-            <button id="new" class="btn btn-primary">
-                <span id="text">New <%= type %> pls</span>
-            </button>
-            <a id="download" href="" target="_blank" class="btn btn-primary">Download this one!</a>
+            <div class="btn-group width-normal" role="group">
+                <button id="new" class="btn btn-primary">
+                    <span id="text"><i class="bi bi-arrow-counterclockwise"></i>
+ New <%= type %> pls</span>
+                </button>
+                <a id="download" href="" target="_blank" class="btn btn-primary"><i class="bi bi-download"></i> Download this one!</a>
+                <a href="/" class="btn btn-primary"><i class="bi bi-house"></i> Go back Home</a>
+            </div>
         </div>
     </div>
     <div class="row">

@@ -103,3 +103,40 @@ $themes-color: (
     object-fit: cover;
   }
 }
+
+@media screen and (max-width: 800px) {
+  .image-main-frame {
+    width: 600px !important;
+    height: 600px !important;
+  }
+}
+
+@media screen and (max-width: 720px) {
+  .width-main > * {
+    font-size: 0.7rem !important;
+  }
+
+  .width-normal > * {
+    font-size: 0.7rem !important;
+  }
+
+  .width-normal > .btn {
+    padding: 4.5px 16px !important;
+  }
+
+  .width-main > .btn {
+    padding: 4.5px 13px !important;
+  }
+
+  .image-main-frame {
+    width: 360px !important;
+    height: 360px !important;
+  }
+}
+
+@media screen and (max-width: 400px) {
+    .image-main-frame {
+        width: 300px !important;
+        height: 300px !important;
+    }
+}

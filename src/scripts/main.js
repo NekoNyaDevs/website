@@ -79,4 +79,5 @@ window.addEventListener('DOMContentLoaded', async () => {
     });
 
     img.src = url;
+    downloadBtn.href = `${baseUrl}/api/v1/download?file=${replaceSlashes(encodeURI((url)))}`;
 });

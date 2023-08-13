@@ -47,7 +47,10 @@ async function getRandomURL(prefix) {
             'Content-Type': 'application/json',
             'Authorization': `Bearer ${process.env.STORAGETOKEN}`
         }
-    }).then(res => res.json());
+    }).then(res => res.json()).catch(err => {
+        console.error(err);
+        return null;
+    });
     const arr = res.data.files;
     if(arr.length <= 0) return null;
     return `${process.env.STORAGEURL}/images/${prefix}/${arr[Math.floor(Math.random() * arr.length)]}`;

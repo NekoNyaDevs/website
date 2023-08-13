@@ -51,6 +51,7 @@ async function getRandomURL(prefix) {
         console.error(err);
         return null;
     });
+    if (!res) return null;
     const arr = res.data.files;
     if(arr.length <= 0) return null;
     return `${process.env.STORAGEURL}/images/${prefix}/${arr[Math.floor(Math.random() * arr.length)]}`;

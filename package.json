@@ -11,8 +11,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "@azure/identity": "^2.0.5",
-    "@azure/storage-blob": "^12.10.0",
     "@classycrafter/super-logger": "^2.0.00",
     "bootstrap": "^5.2.3",
     "chalk": "^4.1.0",

@@ -1,6 +1,5 @@
 const express = require('express');
 const api = express.Router();
-const request = require("superagent");
 const fetch = require("node-fetch");
 
 api.use(async (req, res, next) => {
@@ -21,18 +20,6 @@ const v1Endpoints = {
 
 api.get('/v1/endpoints', (req, res) => {
     res.status(200).json(v1Endpoints);
-});
-
-api.get('/v1/download', (req, res) => {
-    const file = req.query.file;
-    if(!file) return res.status(400).json({ message: 'Bad request.' });
-    if(!file.startsWith(process.env.STORAGEURL)) return res.status(400).json({ message: 'Bad request.' });
-    const filename = file.split('/').pop();
-    res.set(
-        'Content-Disposition',
-        'attachment; filename=' + filename
-    );
-    request(file).pipe(res);
 });
 
 /**
@@ -59,7 +46,6 @@ async function getRandomURL(prefix) {
 
 api.get('/v1/random/:type', async (req, res) => {
     const type = req.params.type;
-    //return res.status(503).json({ message: 'Service Temporary Unavailable - Maintenance occurring on API.' })
     switch(type) {
         case 'neko':
             const nekourl = await getRandomURL('nekos');

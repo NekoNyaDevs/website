@@ -1,10 +1,6 @@
 const baseUrl = window.location.origin;
 const apiURL = `${baseUrl}/api/v1/random/neko`;
 
-function replaceSlashes(string) {
-    return string.replace(/\//g, '%2F');
-}
-
 /**
  *
  * @param {string} cssClass
@@ -62,12 +58,11 @@ window.addEventListener('DOMContentLoaded', async () => {
     const newBtn = document.querySelector('#new');
     const downloadBtn = document.querySelector('#download');
 
-    let url = await fetch(apiURL).then(res => res.json()).then(data => data.url);
-
     async function changeImgSrc() {
         url = await fetch(apiURL).then(res => res.json()).then(data => data.url);
         img.src = url;
-        downloadBtn.href = `${baseUrl}/api/v1/download?file=${replaceSlashes(encodeURI((url)))}`;
+        downloadBtn.setAttribute("url", encodeURI(url));
+        downloadBtn.addEventListener("click", download);
     }
 
     newBtn.addEventListener('click', async () => {
@@ -78,6 +73,5 @@ window.addEventListener('DOMContentLoaded', async () => {
         changeLoadingState(newBtn, false);
     });
 
-    img.src = url;
-    downloadBtn.href = `${baseUrl}/api/v1/download?file=${replaceSlashes(encodeURI((url)))}`;
+    await changeImgSrc().catch((err) => {});
 });

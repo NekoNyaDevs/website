@@ -2,25 +2,22 @@ const baseUrl = window.location.origin;
 const apiURL = `${baseUrl}/api/v1/random/`;
 const type = window.location.pathname.split('/')[2];
 
-function replaceSlashes(string) {
-    return string.replace(/\//g, '%2F');
-}
-
-async function get(){
+async function get() {
     const response = await fetch(apiURL + type);
     const data = await response.json();
     const url = data.url;
     document.querySelector("#img").src = url;
-    document.querySelector("#download").href = `${baseUrl}/api/v1/download?file=${replaceSlashes(encodeURI((url)))}`;
+    document.querySelector("#download").setAttribute("url", encodeURI(url));
+    document.querySelector("#download").addEventListener("click", download);
 }
 
 get();
 
 /**
- * 
- * @param {string} cssClass 
- * @param {Element} element 
- * @param {boolean} state 
+ *
+ * @param {string} cssClass
+ * @param {Element} element
+ * @param {boolean} state
  */
 function changeClassState(cssClass, element, state) {
     if(state === true && !element.classList.contains(cssClass)) return element.classList.add(cssClass);
@@ -35,9 +32,9 @@ function createI() {
 }
 
 /**
- * 
- * @param {Element} element 
- * @param {boolean} state 
+ *
+ * @param {Element} element
+ * @param {boolean} state
  */
 function changeLoadingState(element, state) {
     let span = element.querySelector('span.spinner-border.spinner-border-sm');
@@ -68,12 +65,15 @@ function changeLoadingState(element, state) {
     }
 }
 
-let img = document.querySelector('#img')
-let btnNew = document.querySelector('#new');
-btnNew.addEventListener('click', async () => {
-    changeClassState('disabled', btnNew, true);
-    changeLoadingState(btnNew, true);
-    await get().catch(err => {});
-    changeClassState('disabled', btnNew, false);
-    changeLoadingState(btnNew, false);
+document.addEventListener('DOMContentLoaded', async () => {
+    let img = document.querySelector('#img')
+    let btnNew = document.querySelector('#new');
+
+    btnNew.addEventListener('click', async () => {
+        changeClassState('disabled', btnNew, true);
+        changeLoadingState(btnNew, true);
+        await get().catch(err => {});
+        changeClassState('disabled', btnNew, false);
+        changeLoadingState(btnNew, false);
+    });
 });

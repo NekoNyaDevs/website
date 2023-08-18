@@ -3,12 +3,13 @@ const apiURL = `${baseUrl}/api/v1/random/`;
 const type = window.location.pathname.split('/')[2];
 
 async function get() {
-    const response = await fetch(apiURL + type);
-    const data = await response.json();
-    const url = data.url;
-    document.querySelector("#img").src = url;
-    document.querySelector("#download").setAttribute("url", encodeURI(url));
-    document.querySelector("#download").addEventListener("click", download);
+  const data = await (await fetch(apiURL + type)).json();
+  const blob = await (await fetch(data.url)).blob();
+  const url = window.URL.createObjectURL(blob);
+
+  document.querySelector("#img").src = url;
+  document.querySelector("#download").setAttribute("url", url);
+  document.querySelector("#download").addEventListener("click", download);
 }
 
 get();
@@ -28,7 +29,7 @@ function createI() {
     const i = document.createElement('i');
     i.classList.add('bi');
     i.classList.add('bi-arrow-counterclockwise');
-    return i;
+  return i;
 }
 
 /**
@@ -47,22 +48,22 @@ function changeLoadingState(element, state) {
         span.classList.add('spinner-border-sm');
         span.setAttribute('role', 'status');
         span.setAttribute('aria-hidden', true);
-    }
+  }
 
     if(state === true && !element.contains(span)) {
         const tempoSpan = element.querySelector('span#text');
         tempoSpan.textContent = ' New ' + type + ' pls';
-        return element.insertBefore(span, element.children[0]);
-    }
+    return element.insertBefore(span, element.children[0]);
+  }
     if(state === false && element.contains(span)) {
-        element.removeChild(span);
+    element.removeChild(span);
         const tempoSpan = element.querySelector('span#text');
-        const el = createI();
+    const el = createI();
         const text = document.createTextNode(' New ' + type + ' pls');
         tempoSpan.textContent = '';
-        tempoSpan.appendChild(el);
-        tempoSpan.appendChild(text);
-    }
+    tempoSpan.appendChild(el);
+    tempoSpan.appendChild(text);
+  }
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
@@ -71,9 +72,9 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     btnNew.addEventListener('click', async () => {
         changeClassState('disabled', btnNew, true);
-        changeLoadingState(btnNew, true);
+    changeLoadingState(btnNew, true);
         await get().catch(err => {});
         changeClassState('disabled', btnNew, false);
-        changeLoadingState(btnNew, false);
-    });
+    changeLoadingState(btnNew, false);
+  });
 });

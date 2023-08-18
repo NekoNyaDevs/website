@@ -16,7 +16,7 @@ function createI() {
     const i = document.createElement('i');
     i.classList.add('bi');
     i.classList.add('bi-arrow-counterclockwise');
-    return i;
+  return i;
 }
 
 /**
@@ -35,22 +35,22 @@ function changeLoadingState(element, state) {
         span.classList.add('spinner-border-sm');
         span.setAttribute('role', 'status');
         span.setAttribute('aria-hidden', true);
-    }
+  }
 
     if(state === true && !element.contains(span)) {
         const tempoSpan = element.querySelector('span#text');
         tempoSpan.textContent = ' New one!';
-        return element.insertBefore(span, element.children[0]);
-    }
+    return element.insertBefore(span, element.children[0]);
+  }
     if(state === false && element.contains(span)) {
-        element.removeChild(span);
+    element.removeChild(span);
         const tempoSpan = element.querySelector('span#text');
-        const el = createI();
+    const el = createI();
         const text = document.createTextNode(' New one!');
         tempoSpan.textContent = '';
-        tempoSpan.appendChild(el);
-        tempoSpan.appendChild(text);
-    }
+    tempoSpan.appendChild(el);
+    tempoSpan.appendChild(text);
+  }
 }
 
 window.addEventListener('DOMContentLoaded', async () => {
@@ -58,20 +58,23 @@ window.addEventListener('DOMContentLoaded', async () => {
     const newBtn = document.querySelector('#new');
     const downloadBtn = document.querySelector('#download');
 
-    async function changeImgSrc() {
-        url = await fetch(apiURL).then(res => res.json()).then(data => data.url);
-        img.src = url;
-        downloadBtn.setAttribute("url", encodeURI(url));
-        downloadBtn.addEventListener("click", download);
-    }
+  async function changeImgSrc() {
+    const data = await (await fetch(apiURL)).json();
+    const blob = await (await fetch(data.url)).blob();
+    const url = window.URL.createObjectURL(blob);
+
+    img.src = url;
+    downloadBtn.setAttribute("url", url);
+    downloadBtn.addEventListener("click", download);
+  }
 
     newBtn.addEventListener('click', async () => {
         changeClassState('disabled', newBtn, true);
-        changeLoadingState(newBtn, true);
+    changeLoadingState(newBtn, true);
         await changeImgSrc().catch(err => {});
         changeClassState('disabled', newBtn, false);
-        changeLoadingState(newBtn, false);
-    });
+    changeLoadingState(newBtn, false);
+  });
 
-    await changeImgSrc().catch((err) => {});
+  await changeImgSrc().catch((err) => {});
 });

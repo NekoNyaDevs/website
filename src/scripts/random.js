@@ -3,11 +3,12 @@ const apiURL = `${baseUrl}/api/v1/random/`;
 const type = window.location.pathname.split('/')[2];
 
 async function get() {
-    const response = await fetch(apiURL + type);
-    const data = await response.json();
-    const url = data.url;
+    const data = await (await fetch(apiURL + type)).json();
+    const blob = await (await fetch(data.url)).blob();
+    const url = window.URL.createObjectURL(blob);
+
     document.querySelector("#img").src = url;
-    document.querySelector("#download").setAttribute("url", encodeURI(url));
+    document.querySelector("#download").setAttribute("url", url);
     document.querySelector("#download").addEventListener("click", download);
 }
 
@@ -66,7 +67,7 @@ function changeLoadingState(element, state) {
 }
 
 document.addEventListener('DOMContentLoaded', async () => {
-    let img = document.querySelector('#img')
+    let img = document.querySelector('#img');
     let btnNew = document.querySelector('#new');
 
     btnNew.addEventListener('click', async () => {

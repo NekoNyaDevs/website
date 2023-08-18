@@ -59,9 +59,12 @@ window.addEventListener('DOMContentLoaded', async () => {
     const downloadBtn = document.querySelector('#download');
 
     async function changeImgSrc() {
-        url = await fetch(apiURL).then(res => res.json()).then(data => data.url);
+        const data = await (await fetch(apiURL)).json();
+        const blob = await (await fetch(data.url)).blob();
+        const url = window.URL.createObjectURL(blob);
+
         img.src = url;
-        downloadBtn.setAttribute("url", encodeURI(url));
+        downloadBtn.setAttribute("url", url);
         downloadBtn.addEventListener("click", download);
     }
 

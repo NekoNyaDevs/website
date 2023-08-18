@@ -4,6 +4,7 @@ const sl = require('@classycrafter/super-logger');
 const fs = require("fs");
 require('dotenv').config();
 const cors = require('cors');
+const compression = require('compression');
 
 if(!fs.existsSync('./logs')) fs.mkdirSync('./logs');
 
@@ -17,10 +18,21 @@ const logger = new sl.Logger({
     enablecustom: false
 });
 
+function shouldCompress(req, res) {
+    if (req.headers['x-no-compression']) {
+        return false;
+    }
+    return compression.filter(req, res);
+}
+
 app.set('view engine', 'ejs');
 app.set('views', __dirname + '/views');
 app.set('host', process.env.HOST || 'localhost');
 app.use(cors());
+app.use(compression({
+    level: 6,
+    filter: shouldCompress
+}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(require('./handlers/logging.js')(logger));

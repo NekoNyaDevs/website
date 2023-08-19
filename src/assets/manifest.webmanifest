@@ -1,0 +1,43 @@
+{
+    "name": "NekoNya, websites for nekos.",
+    "short_name": "NekoNya",
+    "start_url": "/",
+    "display": "browser",
+    "background_color": "#bbbbbb",
+    "theme_color": "#9bdbff",
+    "description": "Utility anime and neko themed website, with an API and some other cool features.",
+    "lang": "en",
+    "orientation": "portrait",
+    "icons": [
+        {
+            "src": "/static/assets/icon-192x192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/assets/icon-512x512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/assets/logo.ico",
+            "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/static/assets/logo-rounded.ico",
+            "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+            "type": "image/x-icon"
+        },
+        {
+            "src": "/static/assets/logo.png",
+            "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+            "type": "image/png"
+        },
+        {
+            "src": "/static/assets/logo-rounded.png",
+            "sizes": "512x512 192x192 64x64 32x32 24x24 16x16",
+            "type": "image/png"
+        }
+    ]
+}

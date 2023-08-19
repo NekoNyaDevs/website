@@ -15,7 +15,7 @@ api.get('/v1/', (req, res) => {
 });
 
 const v1Endpoints = {
-    0: "GET        /api/v1/random/<neko, kitsune, lewd, hug, kiss, pat>"
+    0: "GET        /api/v1/random/<neko, kitsune, lewd, hug, kiss, pat, slap>"
 };
 
 api.get('/v1/endpoints', (req, res) => {
@@ -70,6 +70,10 @@ api.get('/v1/random/:type', async (req, res) => {
         case 'pat':
             const paturl = await getRandomURL('pats');
             res.status(200).json({ url: paturl ? paturl : 'No Pat :/' });
+            break;
+        case 'slap':
+            const slapurl = await getRandomURL('slaps');
+            res.status(200).json({ url: slapurl ? slapurl : 'No Slap :/' });
             break;
         default:
             res.status(404).json({ message: 'Not Found' });

@@ -126,6 +126,12 @@ $themes-color: (
   border: none;
 }
 
+@media screen and (max-width: 990px) {
+  .navbar > .container-fluid > .navbar-brand {
+    position: relative;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .image-main-frame {
     width: 600px !important;

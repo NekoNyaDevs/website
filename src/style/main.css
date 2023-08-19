@@ -10955,6 +10955,11 @@ textarea.form-control-lg {
   border: none;
 }
 
+@media screen and (max-width: 990px) {
+  .navbar > .container-fluid > .navbar-brand, .navbar > .container-sm > .navbar-brand, .navbar > .container-md > .navbar-brand, .navbar > .container-lg > .navbar-brand, .navbar > .container-xl > .navbar-brand, .navbar > .container-xxl > .navbar-brand {
+    position: relative;
+  }
+}
 @media screen and (max-width: 800px) {
   .image-main-frame {
     width: 600px !important;

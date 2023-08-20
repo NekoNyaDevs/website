@@ -15,7 +15,9 @@ api.get('/v1/', (req, res) => {
 });
 
 const v1Endpoints = {
-    0: "GET        /api/v1/random/<neko, kitsune, lewd, hug, kiss, pat, slap>"
+    0: "GET        /api/v1/random/<neko, kitsune, lewd, hug, kiss, pat, slap>",
+    1: "GET        /api/v1/8ball?cute=<true, false>",
+    2: "GET        /api/v1/owoify?text=<text>"
 };
 
 api.get('/v1/endpoints', (req, res) => {

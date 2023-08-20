@@ -21,7 +21,7 @@
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Random Images
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="imagesDropdown">
                         <li><a class="dropdown-item" href="/random/neko">Random Neko</a></li>
                         <li><a class="dropdown-item" href="/random/kitsune">Random Kitsune</a></li>
                         <li><a class="dropdown-item" href="/random/hug">Random Hug</a></li>
@@ -30,13 +30,22 @@
                         <li><a class="dropdown-item" href="/random/slap">Random Slap</a></li>
                     </ul>
                 </li>
+                <li class="nav-item dropdown" aria-labelledby="utilitiesDropdown">
+                    <a href="#" class="nav-link dropdown-toggle" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        Utilities
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="/api/v1/8ball?cute=true">8ball</a></li>
+                        <li><a class="dropdown-item" href="/api/v1/owoify?text=">Owoify</a></li>
+                    </ul>
+                </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
                         Others
                     </a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+                    <ul class="dropdown-menu" aria-labelledby="otherDropdown">
                         <li><a class="dropdown-item" href="/api/v1/">API</a></li>
-                        <li><a class="dropdown-item disabled" href="#">NSFW (Only available from API!)</a></li>
+                        <li><a class="dropdown-item" href="/random/lewd">NSFW</a></li>
                         <li><hr class="dropdown-divider"></li>
                         <li><a class="dropdown-item" target="_blank" href="/discord">Post images</a></li>
                         <li><a class="dropdown-item" target="_blank" href="/contact">Contact Us</a></li>

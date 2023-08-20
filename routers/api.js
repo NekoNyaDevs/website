@@ -142,5 +142,12 @@ api.get('/v1/8ball', (req, res) => {
     res.status(200).json({ answer: answers[Math.floor(Math.random() * answers.length)] });
 });
 
+api.get('/v1/owoify', (req, res) => {
+    const text = req.query.text;
+    if(!text) return res.status(400).json({ message: 'Missing text query' });
+    const owo = text.replace(/(?:r|l)/g, "w").replace(/(?:R|L)/g, "W").replace(/n([aeiou])/g, 'ny$1').replace(/N([aeiou])/g, 'Ny$1').replace(/N([AEIOU])/g, 'Ny$1').replace(/ove/g, "uv");
+    res.status(200).json({ result: owo });
+});
+
 
 module.exports = api;

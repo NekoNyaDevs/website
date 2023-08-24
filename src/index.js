@@ -1,10 +1,11 @@
-const express = require("express");
+const express = require('express');
 const app = express();
 const sl = require('@classycrafter/super-logger');
-const fs = require("fs");
+const fs = require('fs');
 require('dotenv').config();
 const cors = require('cors');
 const compression = require('compression');
+const path = require('path');
 
 if(!fs.existsSync('./logs')) fs.mkdirSync('./logs');
 
@@ -26,7 +27,7 @@ function shouldCompress(req, res) {
 }
 
 app.set('view engine', 'ejs');
-app.set('views', __dirname + '/views');
+app.set('views', path.join(__dirname, '..', 'web', 'views'));
 app.set('host', process.env.HOST || 'localhost');
 app.use(cors());
 app.use(compression({
@@ -35,18 +36,17 @@ app.use(compression({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+app.use('/api', require('./routers/api')(logger));
+app.use('/static', express.static(path.join(__dirname, '..', 'web', 'static')));
+app.use('/scripts', express.static(path.join(__dirname, '..', 'web', 'static')));
 app.use(require('./handlers/logging.js')(logger));
-app.use('/static', express.static(__dirname + "/src"));
-app.use('/scripts', express.static(__dirname + '/src/scripts'));
-
 
 const isValidMethod = (method) => {
     return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(method.toUpperCase());
 };
 
-
 const main = async () => {
-    const routes = fs.readdirSync('./routes').filter(file => file.endsWith('.js'));
+    const routes = fs.readdirSync(path.join(__dirname, 'routes')).filter(file => file.endsWith('.js'));
     for (const file of routes) {
         const route = require(`./routes/${file}`);
         if(route.path && isValidMethod(route.method)) {
@@ -56,21 +56,20 @@ const main = async () => {
                 return route.router(req, res, logger, {});
             };
             app[route.method.toLowerCase()](route.path, run);
-            logger.info(`Loaded route ${route.path} (${route.method.toUpperCase()})`, "Express");
+            logger.info(`Loaded route ${route.path} (${route.method.toUpperCase()})`, 'Express');
         }
     }
 
-    app.use('/api', require('./routers/api'));
     app.use(require('./handlers/404handler.js')(logger));
     app.use(require('./handlers/errorhandler.js')(logger));
 
     app.listen(process.env.PORT, () => {
-        logger.info(`Listening on port ${process.env.PORT}`, "Express");
+        logger.info(`Listening on port ${process.env.PORT}`, 'Express');
     });
 };
 
 main().catch(err => {
-    logger.fatal(err.stack, "Express");
+    logger.fatal(err.stack, 'Express');
 });
 
 module.exports = {

@@ -10,7 +10,7 @@ module.exports = (logger) => {
      * @param {express.NextFunction} next
      */
     return (err, req, res, next) => {
-        if(err.code !== 404) logger.error(err.message, "Error");
+        if(err.code !== 404) logger.error(err.message, 'Error');
         if(err.code === 404) return res.status(404).render('404');
         res.status(err.code || 501).render('globalerror', {
             page: req.url,

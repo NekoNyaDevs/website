@@ -38,7 +38,6 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./routers/api')(logger));
 app.use('/static', express.static(path.join(__dirname, '..', 'web', 'static')));
-app.use('/scripts', express.static(path.join(__dirname, '..', 'web', 'static')));
 app.use(require('./handlers/logging.js')(logger));
 
 const isValidMethod = (method) => {

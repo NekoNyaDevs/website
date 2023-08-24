@@ -1,6 +1,6 @@
 document.addEventListener('DOMContentLoaded', function(){
     var script = document.createElement('script');
-    script.src = '/scripts/particles.min.js';
+    script.src = '/static/scripts/particles.min.js';
     script.onload = function(){
         particlesJS("particles-js", {
           particles: {

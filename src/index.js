@@ -6,6 +6,7 @@ require('dotenv').config();
 const cors = require('cors');
 const compression = require('compression');
 const path = require('path');
+const DB = require('./db');
 
 if(!fs.existsSync('./logs')) fs.mkdirSync('./logs');
 
@@ -18,6 +19,8 @@ const logger = new sl.Logger({
     colored: true,
     enablecustom: false
 });
+
+const db = new DB(logger);
 
 function shouldCompress(req, res) {
     if (req.headers['x-no-compression']) {
@@ -38,7 +41,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./routers/api')(logger));
 app.use('/static', express.static(path.join(__dirname, '..', 'web', 'static')));
-app.use(require('./handlers/logging.js')(logger));
+app.use(require('./middlewares/logging.js')(logger));
 
 const isValidMethod = (method) => {
     return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(method.toUpperCase());
@@ -59,8 +62,8 @@ const main = async () => {
         }
     }
 
-    app.use(require('./handlers/404handler.js')(logger));
-    app.use(require('./handlers/errorhandler.js')(logger));
+    app.use(require('./middlewares/404handler.js')(logger));
+    app.use(require('./middlewares/errorhandler.js')(logger));
 
     app.listen(process.env.PORT, () => {
         logger.info(`Listening on port ${process.env.PORT}`, 'Express');
@@ -72,5 +75,6 @@ main().catch(err => {
 });
 
 module.exports = {
-    app
+    app,
+    db
 };

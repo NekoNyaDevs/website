@@ -2,8 +2,11 @@ const fs = require('fs');
 const {Router} = require('express');
 const path = require('path');
 const infos = require('../infos');
+const v1Limiter = require('../../../middlewares/api/v1/limiter');
 
 const router = Router();
+
+router.use(v1Limiter);
 
 router.get('/', (req, res) => {
     res.status(200).json({

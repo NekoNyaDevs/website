@@ -3,6 +3,8 @@ const {Router} = require('express');
 const {Logger} = require('@classycrafter/super-logger');
 const infos = require('./infos');
 
+const baseAPILimiter = require('../../middlewares/api/baseapilimiter');
+
 /**
  *
  * @param {Logger} logger
@@ -11,7 +13,7 @@ const infos = require('./infos');
 module.exports = (logger) => {
     const router = Router();
 
-    router.get('/', (req, res) => {
+    router.get('/', baseAPILimiter, (req, res) => {
         res.status(200).json({
             status: 200,
             code: 'OK',

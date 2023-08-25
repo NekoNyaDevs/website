@@ -10,16 +10,16 @@ const ApiKeySchema = new Schema({
         required: true
     },
     createdAt: {
-        type: Date,
+        type: Number,
         required: true
     },
     expiresAt: {
-        type: Date,
+        type: Number,
         required: true
     },
     /**
      * 0 = No limit (Owner only)
-     * 1 = 100 requests per minute (Basic)
+     * 1 = 200 requests per minute (Basic)
      * 2 = 1000 requests per minute (Premium)
      * 3 = 50000 requests per minute (Business)
      */

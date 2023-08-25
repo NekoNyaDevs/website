@@ -55,7 +55,7 @@ const main = async () => {
             const run = (req, res) => {
                 // conditions before run here
 
-                return route.router(req, res, logger, {});
+                return route.router(req, res, logger, { db });
             };
             app[route.method.toLowerCase()](route.path, run);
             logger.info(`Loaded route ${route.path} (${route.method.toUpperCase()})`, 'Express');

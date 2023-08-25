@@ -12,6 +12,18 @@ const getMs = (start) => {
     return ((diff[0] * NS_PER_SEC + diff[1]) / NS_TO_MS).toLocaleString();
 };
 
+const passPathes = [
+    "/api",
+    "/newapikey"
+];
+
+const passPath = (path) => {
+    for (const pass of passPathes) {
+        if (path.startsWith(pass)) return true;
+    }
+    return false;
+};
+
 const timingColor = (ms) => {
     let msnum;
     if(typeof ms === "string") msnum = parseInt(ms);
@@ -25,6 +37,7 @@ const timingColor = (ms) => {
 module.exports = (logger) => {
     return (req, res, next) => {
         next();
+        if (passPath(req.path)) return;
         const ms = getMs(process.hrtime());
         if(!isGoodStatus(res.statusCode)) return logger.warn(`${req.method} @${req.url} - ${res.statusCode} (${timingColor(ms)})`, "Express");
         logger.info(`${req.method} @${req.url} - ${res.statusCode} (${timingColor(ms)})`, "Express");

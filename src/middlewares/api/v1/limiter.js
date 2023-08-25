@@ -4,16 +4,17 @@ const apikey = require('../../../models/apikey');
 const v1Limiter = limiter({
     windowMs: 60 * 1000,
     max: async (req, res) => {
-        const key = req.body.api_key;
-        if(!key) return 100;
+        const key = req.headers['x-api-key'];
+        if(!key  || key.length > 32) return 100;
         const dbKey = await apikey.findOne({ key: key });
-        if(!dbKey || dbKey.expiresAt > Date.now()) return 100;
-        if(dbKey.isDisabled) return 1;
+        if(!dbKey) return 100;
+        if(dbKey.expiresAt > 0 && dbKey.expiresAt < Date.now()) return 10;
+        if(dbKey.isDisabled) return 0;
         switch(dbKey.type) {
             case 0:
                 return 100;
             case 1:
-                return 100;
+                return 200;
             case 2:
                 return 1000;
             case 3:
@@ -33,11 +34,12 @@ const v1Limiter = limiter({
     legacyHeaders: false,
     standardHeaders: true,
     skip: async (req, res) => {
-        const key = req.body.api_key;
+        const key = req.headers['x-api-key'];
         if(!key) return false;
         const dbKey = await apikey.findOne({ key: key });
         if(!dbKey) return false;
-        return dbKey.type === 0 && dbKey.expiresAt > Date.now();
+        if(dbKey.expiresAt > 0 && dbKey.expiresAt < Date.now()) return false;
+        return dbKey.type === 0 && !dbKey.isDisabled;
     }
 });
 

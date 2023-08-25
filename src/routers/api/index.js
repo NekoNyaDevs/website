@@ -27,7 +27,7 @@ module.exports = (logger) => {
     fs.readdirSync(__dirname).forEach(dir => {
         if(dir === 'index.js' || dir  === 'infos.js') return;
         const route = require('./' + dir);
-        router.use(`/${dir}/`, route);
+        router.use(`/${dir}/`, route(logger));
         logger.info(`Loaded API version ${dir}`, 'API');
     });
 

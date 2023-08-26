@@ -14,7 +14,7 @@ module.exports = (logger) => {
             blogData.push(data);
         }
 
-        return res.render('blog/index', {
+        return res.status(200).render('blog/index', {
             page: req.baseUrl + req.path,
             blogs: blogData
         });

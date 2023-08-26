@@ -9,7 +9,7 @@ module.exports = {
         if (!type) return res.status(400).json({ message: 'Bad request.' });
         if (!['neko', 'kitsune', 'lewd', 'hug', 'kiss', 'pat', 'slap'].includes(type)) return res.redirect('/random/neko');
 
-        return res.render('random', {
+        return res.status(200).render('random', {
             page: req.path,
             type: type
         });

@@ -5,7 +5,7 @@ module.exports = {
     path: "/",
     method: "get",
     router: (req, res, logger, data) => {
-        return res.render('index', {
+        return res.status(200).render('index', {
             page: req.path
         });
     }

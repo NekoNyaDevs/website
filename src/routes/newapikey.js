@@ -12,7 +12,7 @@ module.exports = {
                 password: password
             });
         }
-        return res.render('index', {
+        return res.status(200).render('index', {
             page: req.path
         });
     }

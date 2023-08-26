@@ -23,7 +23,7 @@ router.get('/:id', (req, res) => {
     const markdown = readFileSync(join(__dirname, '..', '..', '..', 'web', 'blogcontent', blog.id, 'content.md'), 'utf-8');
     const html = converter.makeHtml(markdown);
 
-    return res.render('blog/view', {
+    return res.status(200).render('blog/view', {
         page: req.baseUrl + req.path,
         blog,
         parsedMarkdown: html

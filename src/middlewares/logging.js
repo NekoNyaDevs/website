@@ -39,7 +39,7 @@ module.exports = (logger) => {
         next();
         if (passPath(req.path)) return;
         const ms = getMs(process.hrtime());
-        if(!isGoodStatus(res.statusCode)) return logger.warn(`${req.method} @${req.url} - ${res.statusCode} (${timingColor(ms)})`, "Express");
-        logger.info(`${req.method} @${req.url} - ${res.statusCode} (${timingColor(ms)})`, "Express");
+        if(!isGoodStatus(res.statusCode)) return logger.warn(`${req.method} @${req.baseUrl ? (req.baseUrl + req.path) : req.path}} - ${res.statusCode} (${timingColor(ms)})`, "Express");
+        logger.info(`${req.method} @${req.baseUrl ? (req.baseUrl + req.path) : req.path} - ${res.statusCode} (${timingColor(ms)})`, "Express");
     };
 };

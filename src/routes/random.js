@@ -10,7 +10,7 @@ module.exports = {
         if (!['neko', 'kitsune', 'lewd', 'hug', 'kiss', 'pat', 'slap'].includes(type)) return res.redirect('/random/neko');
 
         return res.render('random', {
-            page: req.url,
+            page: req.path,
             type: type
         });
     }

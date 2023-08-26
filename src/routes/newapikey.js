@@ -8,12 +8,12 @@ module.exports = {
         const password = req.query.password;
         if(password && password === process.env.PASSWORD) {
             return res.render('newapikey.ejs', {
-                page: req.url,
+                page: req.path,
                 password: password
             });
         }
         return res.render('index', {
-            page: req.url
+            page: req.path
         });
     }
 };

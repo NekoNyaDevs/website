@@ -42,6 +42,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api', require('./routers/api')(logger));
 app.use('/static', express.static(path.join(__dirname, '..', 'web', 'static')));
 app.use(require('./middlewares/logging.js')(logger));
+app.use('/blog', require('./routers/blog')(logger));
 
 const isValidMethod = (method) => {
     return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(method.toUpperCase());

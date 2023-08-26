@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%- include('../parts/headers.ejs') %>
+    <title>NekoNya's Blog</title>
+</head>
+<body style="background-color: #bbbbbb;">
+<%- include('../parts/nav.ejs') %>
+<div class="container blog-main">
+    <div class="blog-wrapper">
+        <div class="blog-post">
+            <h2 class="blog-post-title"><%= blog.title %></h2>
+            <p class="blog-post-meta">Created the <%= new Date(blog.createdAt).toLocaleString(); %></p>
+            <p><%= blog.content %></p>
+        </div>
+        <div class="blog-content" id="blog-content"></div>
+    </div>
+</div>
+<%- include('../parts/footer.ejs') %>
+<script>
+    const html = `<%- parsedMarkdown %>`;
+    document.addEventListener('DOMContentLoaded', () => {
+        document.getElementById('blog-content').innerHTML = html;
+    });
+</script>
+</body>
+</html>

@@ -1,2 +1,6 @@
 User-agent: *
 Allow: /
+Disallow: /l/*
+Disallow: /l/
+Disallow: /api/*
+Disallow: /api/

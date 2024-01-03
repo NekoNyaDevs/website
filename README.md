@@ -29,7 +29,7 @@ import fetch from 'node-fetch';
 ```
 If you prefer to use one of our wrappers:
 - [JavaScript/TypeScript](https://www.npmjs.com/package/nekonya.js)
-- Java - Still in development!
+- [Java](https://github.com/NekoNyaDevs/NekoNya4J)
 
 ## 📜・License
 

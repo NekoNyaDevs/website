@@ -48,6 +48,23 @@ const main = async () => {
     const routes = fs.readdirSync(path.join(__dirname, 'routes')).filter(file => file.endsWith('.js'));
     for (const file of routes) {
         const route = require(`./routes/${file}`);
+
+        if (Array.isArray(route)) {
+            for (const r of route) {
+                if(r.path && isValidMethod(r.method)) {
+                    // this code is old, too lazy to rewrite it to use a better router system. Like they say, Don't Touch If It Works!
+                    const run = (req, res) => {
+                        // conditions before run here
+
+                        return r.router(req, res, logger, {});
+                    };
+                    app[r.method.toLowerCase()](r.path, run);
+                    logger.info(`Loaded route ${r.path} (${r.method.toUpperCase()})`, 'Express');
+                }
+            }
+            continue;
+        }
+
         if(route.path && isValidMethod(route.method)) {
             const run = (req, res) => {
                 // conditions before run here

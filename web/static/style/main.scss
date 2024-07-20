@@ -27,35 +27,23 @@ $themes-color: (
   "dark": $dark
 );
 
+$btn-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+$btn-border-radius: 3px;
+$btn-transition: all 0.3s ease;
+$btn-hover-bg-tint-amount: 15%;
+$btn-hover-border-tint-amount: 15%;
+$btn-active-bg-tint-amount: 15%;
+$btn-active-border-tint-amount: 15%;
+$btn-padding-x: 20px;
+$btn-padding-y: 8px;
+$btn-line-height: 1.5;
+$btn-font-size: 16px;
+
 .header-icon {
   font-size: 100px;
 }
 
-@each $name, $color in $themes-color {
-  .btn-#{$name} {
-    background-color: $color !important;
-    border-color: $color !important;
-    border-width: 2px;
-    color: #fff;
-    transition: all 0.3s ease !important;
-    border-radius: 3px !important;
-    padding: 7px 20px !important;
-    font-size: 16px !important;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
-    &:hover {
-      background-color: darken($color, 10%) !important;
-      border-color: darken($color, 10%) !important;
-    }
-    &:focus, &:active {
-      transform: scale(0.95);
-    }
-  }
-}
-
 .card {
-    border: 0;
-    border-radius: 0.5rem;
-    box-shadow: 0 0.5rem 1rem 0 rgba(0, 0, 0, 0.1);
     transition: all 0.2s;
     &:hover {
         transform: translateY(-0.25rem);
@@ -70,38 +58,31 @@ $themes-color: (
 
 @import "../../../node_modules/bootstrap/scss/bootstrap";
 
+@each $name, $color in $themes-color {
+  .btn-#{$name} {
+    @include button-variant($color, $color,
+      $hover-background: darken($color, 10%),
+      $hover-border: darken($color, 10%),
+      $active-background: darken($color, 10%),
+      $active-border: darken($color, 10%)
+    );
+    &:focus, &:active {
+      transform: scale(0.95);
+    }
+  }
+}
+
 .width-main {
   width: 720px;
-  margin-top: 10px;
-  gap: 10px;
 }
 
 .width-normal {
     width: 100%;
-    margin-top: 10px;
-    gap: 10px;
 }
 
 .image-main-frame {
   width: 720px;
   height: 720px;
-  border-radius: 0.5rem;
-  border-color: $primary;
-  padding: 0;
-  margin: 0;
-  border-width: 2px;
-  border-style: solid;
-  overflow: hidden;
-  justify-self: center;
-  justify-content: center;
-  align-items: center;
-  display: flex;
-  position: relative;
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
 }
 
 .navbar > .container-fluid > .navbar-brand {

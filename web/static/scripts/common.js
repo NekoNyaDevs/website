@@ -8,3 +8,13 @@ function download(e) {
     elem.click();
     document.body.removeChild(elem);
 }
+
+document.addEventListener("DOMContentLoaded", async () => {
+    const images = document.querySelectorAll("img");
+    images.forEach((img) => {
+        img.addEventListener("error", (e) => {
+            e.target.src = "https://http.cat/404";
+            e.onerror = null;
+        });
+    });
+});

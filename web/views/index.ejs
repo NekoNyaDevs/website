@@ -4,20 +4,20 @@
   <%- include('parts/headers.ejs') %>
     <title>NekoNya, website for nekos</title>
 </head>
-<body style="background-color: #bbbbbb;" class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100 bg-secondary">
     <%- include('parts/nav.ejs') %>
     <div id="particles-js"></div>
     <div class="container main">
-        <div class="row">
+        <div class="row my-3">
             <div class="col">
-                <h1 class="text-center">Welcome to NekoNya!</h1>
+                <h1 class="text-center fs-1 fw-bold">Welcome to <span class="text-primary">Neko</span><span class="text-success">Nya</span>!</h1>
             </div>
         </div>
         <div class="row center">
-            <div class="image-main-frame">
-                <img src="" alt="" id="neko" />
+            <div class="rounded border border-3 border-primary ratio ratio-1x1 image-main-frame">
+                <img src="" alt="" class="object-fit-cover" id="neko" />
             </div>
-            <div class="btn-group width-main" role="group">
+            <div class="btn-toolbar justify-content-center gap-2 mt-2 width-main" role="group">
                 <button role="button" class="btn btn-primary" id="new"><span id="text"><i class="bi bi-arrow-counterclockwise"></i> New one!</span></button>
                 <a role="button" class="btn btn-primary" href="/random/neko"><i class="bi bi-link-45deg"></i> Better experience in the random page!</a>
                 <a role="button" class="btn btn-primary" id="download"><i class="bi bi-download"></i> Download image!</a>
@@ -26,21 +26,23 @@
     </div>
     <div class="container py-5">
         <div class="row" id="about">
-            <div class="col-md-12">
-                <h2>About</h2>
-                <p>Made by TheDogHusky aka ClassyCrafter, NekoNya is a website for nekos, kitsunes, and other anime things. We have a random image picker, and an API for developers to use. We also have a discord server for you to post images and chat with other people. We hope you enjoy your stay!</p>
+            <div class="col-md-12 d-flex flex-column justify-content-center text-center">
+                <h2 class="fw-bold">About</h2>
+                <p class="mb-0">NekoNya was originally made by TheDogHusky, as a small useless project about anime and nekos. However, he kept developing it and want it to become a big website about anime and nekos.</p>
+                <p class="mb-0">Now, the website is open-source and maintained by NekoNyaDevs, a small group of developers that want to make the website better and better.</p>
+                <p class="mb-0">Our goal is to make the website the best utility anime and neko themed website, with an API and some other cool features.</p>
             </div>
         </div>
         <div class="row">
-            <h2 class="text-center">Why us?</h2>
+            <h2 class="text-center fw-bold mt-3">Why us?</h2>
         </div>
         <div class="row row-cols-1 row-cols-md-3 g-4">
             <div class="col py-5">
-                <div class="card h-100 text-center opacity-75">
+                <div class="card h-100 text-center opacity-75 shadow-lg">
                     <i class="bi bi-file-earmark-code-fill header-icon"></i>
                     <div class="card-body text-center">
-                        <h5 class="card-title">Free to use, maybe</h5>
-                        <p class="card-text">We can't really tell if our images are free to use, we just got 'em downloading from some databases, without filtering. But let's say it is, right?</p>
+                        <h5 class="card-title">Lots of images</h5>
+                        <p class="card-text">We try our best at uploading more and more pictures to NekoNya, by downloading randomly from the internet.</p>
                     </div>
                     <div class="card-footer text-center">
                         <a href="/random" class="btn btn-success opacity-100">Try out</a>
@@ -48,7 +50,7 @@
                 </div>
             </div>
             <div class="col py-5">
-                <div class="card h-100 text-center opacity-75">
+                <div class="card h-100 text-center opacity-75 shadow-lg">
                     <i class="bi bi-lightning-charge-fill header-icon"></i>
                     <div class="card-body text-center">
                         <h5 class="card-title">Fast</h5>
@@ -60,7 +62,7 @@
                 </div>
             </div>
             <div class="col py-5">
-                <div class="card h-100 text-center opacity-75">
+                <div class="card h-100 text-center opacity-75 shadow-lg">
                     <i class="bi bi-braces-asterisk header-icon"></i>
                     <div class="card-body text-center">
                         <h5 class="card-title">API</h5>
@@ -72,13 +74,10 @@
                 </div>
             </div>
         </div>
-    </div>
-    <!--How does it work?-->
-    <div class="container py-5" id="howto">
         <div class="row">
-            <div class="col-md-12">
-                <h2>How it works</h2>
-                <p>This website will generate a random neko image, or kitsune image (or a lot more) when you reload the type's page and the button.</p>
+            <div class="col-md-12 d-flex flex-column justify-content-center text-center">
+                <h2 class="fw-bold">How it works</h2>
+                <p>This website will give you a random anime image following the category you chose when you reload the category's page or click on the button.</p>
             </div>
             <a class="btn btn-primary" href="/random">Get in da nekos!</a>
         </div>

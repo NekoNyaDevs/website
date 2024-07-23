@@ -6,6 +6,7 @@ require('dotenv').config();
 const cors = require('cors');
 const compression = require('compression');
 const path = require('path');
+const { createProxyMiddleware } = require('http-proxy-middleware');
 
 if(!fs.existsSync('./logs')) fs.mkdirSync('./logs');
 
@@ -36,7 +37,11 @@ app.use(compression({
 }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
-app.use('/api', require('./routers/api')(logger));
+if (process.env.NODE_ENV === 'development') {
+    const proxy = createProxyMiddleware({ target: 'http://localhost:3000', changeOrigin: true });
+    app.use('/api', proxy);
+    app.use('/images', proxy);
+}
 app.use('/static', express.static(path.join(__dirname, '..', 'web', 'static')));
 app.use(require('./handlers/logging.js')(logger));
 

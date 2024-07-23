@@ -26,7 +26,7 @@ module.exports = (logger) => {
     return (req, res, next) => {
         next();
         const ms = getMs(process.hrtime());
-        if(!isGoodStatus(res.statusCode)) return logger.warn(`${req.method} @${req.url} - ${res.statusCode} (${timingColor(ms)})`, "Express");
-        logger.info(`${req.method} @${req.url} - ${res.statusCode} (${timingColor(ms)})`, "Express");
+        if(!isGoodStatus(res.statusCode)) return logger.warn(`${req.method} @${req.originalUrl} - ${res.statusCode} (${timingColor(ms)})`, "Express");
+        logger.info(`${req.method} @${req.originalUrl} - ${res.statusCode} (${timingColor(ms)})`, "Express");
     };
 };

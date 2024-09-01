@@ -28,6 +28,7 @@ function shouldCompress(req, res) {
 }
 
 app.set('view engine', 'ejs');
+app.set('trust proxy', 1);
 app.set('views', path.join(__dirname, '..', 'web', 'views'));
 app.set('host', process.env.HOST || 'localhost');
 app.use(cors());

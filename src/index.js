@@ -44,6 +44,7 @@ if (process.env.NODE_ENV === 'development') {
 }
 app.use('/static', express.static(path.join(__dirname, '..', 'web', 'static')));
 app.use(require('./handlers/logging.js')(logger));
+app.disable("x-powered-by");
 
 const isValidMethod = (method) => {
     return ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'].includes(method.toUpperCase());

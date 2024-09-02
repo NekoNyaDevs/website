@@ -4,6 +4,8 @@
 
 Welcome to the official repository of NekoNya.
 
+This is a public archive of NekoNya's old "frontend".
+
 ## ❓・NekoNya, what is it?
 
 NekoNya is an anime and neko themed utility website that contains a lot of features, such as:
